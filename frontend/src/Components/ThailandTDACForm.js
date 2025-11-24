@@ -1,10 +1,11 @@
 // ThailandTDACForm.jsx
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate,} from "react-router-dom";
+
+
 
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useNavigate } from "react-router-dom";
 import {
   FaUser,
   FaPassport,
@@ -29,7 +30,10 @@ const initialForm = {
 };
 
 const ThailandTDACForm = () => {
-  const { country } = useParams();
+  
+ 
+
+  
 
   const [form, setForm] = useState(initialForm);
   const [loading, setLoading] = useState(false);
@@ -44,15 +48,7 @@ const ThailandTDACForm = () => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
   };
-  const flags = {
-  Thailand: "🇹🇭",
-  Dubai: "🇦🇪",
-  Russia: "🇷🇺",
-  Vietnam: "🇻🇳",
-  Japan: "🇯🇵",
-  France: "🇫🇷",
-  Germany: "🇩🇪",
-};
+
 
 
   const sendOtp = async () => {
@@ -88,30 +84,44 @@ const ThailandTDACForm = () => {
     }
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!phoneVerified) return alert("Please verify your phone number first");
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!phoneVerified) return alert("Please verify your phone number first");
 
-    for (let field of requiredFields) {
-      if (!form[field]?.trim()) {
-        alert(`Please fill in ${field.replace("_", " ")}`);
-        return;
-      }
+  for (let field of requiredFields) {
+    if (!form[field]?.trim()) {
+      alert(`Please fill in ${field.replace("_", " ")}`);
+      return;
     }
+  }
 
-    setLoading(true);
-    try {
-     const res = await axios.post(`http://localhost:3001/apply/${country}`, form);
-      alert(res.data.message || "Form submitted successfully!");
-      navigate(`/booking/${country}`, { state: { booking: form } });
-      setForm(initialForm);
-    } catch (err) {
-      console.error(err?.response || err);
-      alert("Error submitting form.");
-    } finally {
+  setLoading(true);
+  try {
+    const res = await axios.post("http://localhost:3001/apply", form);
+
+    if (!res.data.success) {
+      alert("Error: Something went wrong.");
       setLoading(false);
+      return;
     }
-  };
+
+    alert("Form submitted successfully!");
+
+    // 👉 Now open next page (no data needed)
+ 
+    navigate("/ThailandBooking", { state: { booking: res.data.data } });
+
+
+
+    setForm(initialForm);
+  } catch (err) {
+    console.error(err?.response || err);
+    alert("Error submitting form.");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div
@@ -132,7 +142,7 @@ const ThailandTDACForm = () => {
       >
         <div className="text-center mb-4">
       <h2 className="fw-bold text-primary mb-1 text-capitalize">
-  {flags[country] || "🌍"} {country} Application Form
+   Application Form
 </h2>
 
           <p className="text-muted small">

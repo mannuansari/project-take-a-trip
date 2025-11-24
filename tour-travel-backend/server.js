@@ -146,18 +146,34 @@ app.post("/thailand-tdac", (req, res) => {
     res.json({ message: "Form submitted successfully!", insertId: result.insertId });
   });
 });
-app.post("/apply/:country", (req, res) => {
-  const country = req.params.country;
-  const form = req.body;
+app.post("/apply", (req, res) => {
+  try {
+    const form = req.body;
 
-  console.log("Country:", country);
-  console.log("Form Data:", form);
+    console.log("Form Received:", form);
 
-  // Aap database me countrywise save kar sakte ho:
-  // Example table name: applications
+    // Save to DB (future me use kar sakte ho)
+    // Abhi sirf demo response de rahe hain
 
-  res.json({ success: true, message: `${country} form submitted successfully!` });
+    const savedData = {
+      id: Date.now(), // temporary ID
+      ...form
+    };
+
+    res.json({
+      success: true,
+      message: "Form submitted successfully!",
+      data: savedData,  // <-- IMPORTANT (frontend ke liye)
+    });
+  } catch (error) {
+    console.error("Apply Error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Something went wrong.",
+    });
+  }
 });
+
 
 // =================== Visa Upload ===================
 app.post(

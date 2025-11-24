@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/project-take-a-trip/static/css/main.5dfb9097.css",
+    "main.js": "/project-take-a-trip/static/js/main.a0b6c3c0.js",
+    "static/js/453.77511b02.chunk.js": "/project-take-a-trip/static/js/453.77511b02.chunk.js",
+    "index.html": "/project-take-a-trip/index.html",
+    "main.5dfb9097.css.map": "/project-take-a-trip/static/css/main.5dfb9097.css.map",
+    "main.a0b6c3c0.js.map": "/project-take-a-trip/static/js/main.a0b6c3c0.js.map",
+    "453.77511b02.chunk.js.map": "/project-take-a-trip/static/js/453.77511b02.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5dfb9097.css",
+    "static/js/main.a0b6c3c0.js"
+  ]
+}

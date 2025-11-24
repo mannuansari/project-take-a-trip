@@ -80,11 +80,12 @@ function Nav() {
 
         {/* Logo + Heading */}
         <div className="header-content d-flex align-items-center justify-content-center gap-3">
-          <img
-            src="/Videoes/images/2.jpg"
-            alt="Travel Logo"
-            className="travel-logo"
-          />
+      <img
+  src="/Videoes/images/2.jpg"
+  alt="Travel Logo"
+  className="travel-logo"
+/>
+
           <div>
             <h1 className="header-title mb-1">
               Visa <span className="highlight-text">on Time</span>, Every Time

@@ -87,8 +87,10 @@ function App() {
                {/* Apply requirments */}
                 <Route path='/Documents' element={<Documents />} />
                 <Route path='/Apply' element={<Apply />} />
-                  <Route path='/ThailandTDACForm' element={<ThailandTDACForm />} />
-                  <Route path='/ThailandBooking' element={<ThailandBooking />} />
+     <Route path="/ThailandTDACForm" element={<ThailandTDACForm />} />
+  <Route path="/ThailandBooking" element={<ThailandBooking />} />
+
+
                    
        
       </Routes>
